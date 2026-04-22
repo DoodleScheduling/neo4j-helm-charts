@@ -1,9 +1,9 @@
 apiVersion: v1
 name: neo4j
 home: https://www.neo4j.com
-version: 2026.3.1
+version: 2026.3.1-relaxed-cpu
 appVersion: 2026.03.1
-description: Neo4j is the world's leading graph database
+description: Neo4j is the world's leading graph database (CPU validation relaxed to 50m for devbox)
 keywords:
   - graph
   - database
