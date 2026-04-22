@@ -208,9 +208,7 @@ E.g. by adding `--set podSpec.loadbalancer=include`
         {{ $cpuFloat = $cpuRegexValue | float64 }}
     {{- end -}}
 
-    {{- if lt $cpuFloat 0.05 }}
-        {{ fail (printf "Provided cpu value %s is less than minimum. \n %s" $cpu (include "neo4j.resources.invalidCPUMessage" .) ) }}
-    {{- end -}}
+    {{- /* CPU minimum validation removed to allow flexible resource allocation in devbox/ephemeral environments */ -}}
 {{- end -}}
 
 
