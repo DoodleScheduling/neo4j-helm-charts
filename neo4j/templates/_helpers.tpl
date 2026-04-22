@@ -208,9 +208,7 @@ E.g. by adding `--set podSpec.loadbalancer=include`
         {{ $cpuFloat = $cpuRegexValue | float64 }}
     {{- end -}}
 
-    {{- if lt $cpuFloat 0.5 }}
-        {{ fail (printf "Provided cpu value %s is less than minimum. \n %s" $cpu (include "neo4j.resources.invalidCPUMessage" .) ) }}
-    {{- end -}}
+    {{- /* CPU minimum validation removed to allow flexible resource allocation in devbox/ephemeral environments */ -}}
 {{- end -}}
 
 
@@ -271,7 +269,7 @@ E.g. by adding `--set podSpec.loadbalancer=include`
 
 
 {{- define "neo4j.resources.minCPUMessage" -}}
-Please set cpu to be a minimum of 0.5 or 500m via --set neo4j.resources.cpu=0.5 or --set neo4j.resources.cpu=500m
+Please set cpu to be a minimum of 0.05 or 50m via --set neo4j.resources.cpu=0.05 or --set neo4j.resources.cpu=50m
 {{- end -}}
 
 {{- define "neo4j.resources.minMemoryMessage" -}}
@@ -279,7 +277,7 @@ Please set memory to be a minimum of 2Gi or 2G via --set neo4j.resources.memory=
 {{- end -}}
 
 {{- define "neo4j.resources.invalidCPUMessage" -}}
-cpu value cannot be less than 0.5 or 500m
+cpu value cannot be less than 0.05 or 50m
 {{- end -}}
 
 {{- define "neo4j.resources.invalidMemoryMessage" -}}
